@@ -47,18 +47,19 @@ export async function processSale(items: SaleItem[]) {
             const newStock = currentStock - item.quantity;
 
             // Actualizar Stock
+            const updatePayload: Database["public"]["Tables"]["products"]["Update"] = { stock: newStock };
             const { error: updateError } = await supabase
                 .from("products")
-                .update({ stock: newStock } as any)
+                .update(updatePayload)
                 .eq("id", item.productId);
 
             if (updateError) throw updateError;
 
             // Registrar Movimiento
-            const movement = {
+            const movement: Database["public"]["Tables"]["stock_movements"]["Insert"] = {
                 user_id: user.id,
                 product_id: item.productId,
-                type: "sale" as const,
+                type: "sale",
                 quantity: -item.quantity,
                 stock_before: currentStock,
                 stock_after: newStock,
@@ -69,7 +70,7 @@ export async function processSale(items: SaleItem[]) {
 
             const { error: moveError } = await supabase
                 .from("stock_movements")
-                .insert(movement as any);
+                .insert(movement);
 
             if (moveError) throw moveError;
         }
