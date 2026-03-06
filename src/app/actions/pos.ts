@@ -47,10 +47,9 @@ export async function processSale(items: SaleItem[]) {
             const newStock = currentStock - item.quantity;
 
             // Actualizar Stock
-            const updatePayload: Database["public"]["Tables"]["products"]["Update"] = { stock: newStock };
-            const { error: updateError } = await supabase
+            const { error: updateError } = await (supabase as any)
                 .from("products")
-                .update(updatePayload)
+                .update({ stock: newStock })
                 .eq("id", item.productId);
 
             if (updateError) throw updateError;
