@@ -54,6 +54,8 @@ function Sparkline({ color = "#3b82f6", points = [30, 45, 35, 60, 50, 70, 65, 80
     );
 }
 
+import InfoTooltip from "./InfoTooltip";
+
 interface KpiCardProps {
     title: string;
     value: string;
@@ -64,6 +66,7 @@ interface KpiCardProps {
     sparklineColor?: string;
     sparklinePoints?: number[];
     alert?: boolean;
+    tooltipText?: string;
 }
 
 export default function KpiCard({
@@ -76,12 +79,16 @@ export default function KpiCard({
     sparklineColor = "#3b82f6",
     sparklinePoints,
     alert = false,
+    tooltipText,
 }: KpiCardProps) {
     return (
         <div className="bg-white rounded-2xl border border-slate-100 shadow-sm px-6 py-5 flex flex-col gap-3 hover:shadow-md transition-shadow duration-200">
             {/* Header */}
             <div className="flex items-start justify-between">
-                <span className="text-sm font-medium text-slate-500">{title}</span>
+                <div className="flex items-center">
+                    <span className="text-sm font-medium text-slate-500">{title}</span>
+                    {tooltipText && <InfoTooltip text={tooltipText} position="bottom" />}
+                </div>
                 {icon && (
                     <div className={`w-9 h-9 ${iconBg} rounded-xl flex items-center justify-center`}>
                         {icon}

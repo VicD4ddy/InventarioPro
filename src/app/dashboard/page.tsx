@@ -10,6 +10,7 @@ import KpiCard from "@/components/KpiCard";
 import { createClient } from "@/lib/supabase/server";
 import type { Product, KpiSummary, KpiSnapshot } from "@/lib/supabase/types";
 import { getStockMovements } from "@/app/actions/historial";
+import InfoTooltip from "@/components/InfoTooltip";
 
 export const revalidate = 60; // Re-validar cada 60s
 
@@ -128,6 +129,7 @@ export default async function DashboardPage() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <KpiCard
                     title="Valor de Inventario"
+                    tooltipText="Suma total del costo de todos los productos en stock."
                     value={formatCurrency(summary.total_value)}
                     icon={<TrendingUp size={18} className="text-blue-600" />}
                     iconBg="bg-blue-50"
@@ -143,6 +145,7 @@ export default async function DashboardPage() {
 
                 <KpiCard
                     title="Stock Total"
+                    tooltipText="Cantidad total de unidades físicas almacenadas."
                     value={summary.total_products.toLocaleString("es")}
                     icon={<Package size={18} className="text-indigo-600" />}
                     iconBg="bg-indigo-50"
@@ -157,6 +160,7 @@ export default async function DashboardPage() {
 
                 <KpiCard
                     title="Alertas Activas"
+                    tooltipText="Productos que están cerca o por debajo de su punto de reorden."
                     value={summary.low_stock_count.toString()}
                     icon={<AlertTriangle size={18} className="text-orange-500" />}
                     iconBg="bg-orange-50"
@@ -182,7 +186,10 @@ export default async function DashboardPage() {
                                 <div className="w-10 h-10 rounded-xl bg-slate-900 flex items-center justify-center text-white">
                                     <RefreshCcw size={20} />
                                 </div>
-                                <h3 className="text-lg font-black text-slate-800 tracking-tight">Actividad Reciente</h3>
+                                <div className="flex items-center">
+                                    <h3 className="text-lg font-black text-slate-800 tracking-tight">Actividad Reciente</h3>
+                                    <InfoTooltip text="Últimos movimientos de entradas o salidas registrados en tu inventario." position="bottom" />
+                                </div>
                             </div>
                             <a href="/dashboard/historial" className="text-[10px] font-black text-blue-600 hover:text-blue-700 uppercase tracking-widest">Ver Todo</a>
                         </div>
@@ -195,8 +202,11 @@ export default async function DashboardPage() {
                 {/* Columna Derecha: Alertas y Sugerencias */}
                 <div className="space-y-6">
                     <div className="bg-white rounded-[32px] border border-slate-100 shadow-sm overflow-hidden border-t-4 border-t-orange-500">
-                        <div className="px-8 py-6 border-b border-slate-50">
-                            <h3 className="text-lg font-black text-slate-800 tracking-tight">Stock Crítico</h3>
+                        <div className="px-8 py-6 border-b border-slate-50 flex items-center justify-between">
+                            <div className="flex items-center">
+                                <h3 className="text-lg font-black text-slate-800 tracking-tight">Stock Crítico</h3>
+                                <InfoTooltip text="Productos que necesitan ser reabastecidos urgentemente." position="bottom" />
+                            </div>
                         </div>
                         <div className="p-4">
                             <LowStockAlerts userId={user.id} />

@@ -31,7 +31,7 @@ export async function processSale(items: SaleItem[]) {
 
         // Validación de stock antes de empezar
         for (const item of items) {
-            const product = products.find(p => p.id === item.productId);
+            const product = (products as any[]).find(p => p.id === item.productId);
             if (!product || (product.stock ?? 0) < item.quantity) {
                 throw new Error(`Stock insuficiente para: ${product?.name || "Producto desconocido"}`);
             }
@@ -42,7 +42,7 @@ export async function processSale(items: SaleItem[]) {
         // para asegurar que toda la venta sea atómica.
 
         for (const item of items) {
-            const product = products.find(p => p.id === item.productId)!;
+            const product = (products as any[]).find(p => p.id === item.productId)!;
             const currentStock = product.stock ?? 0;
             const newStock = currentStock - item.quantity;
 
