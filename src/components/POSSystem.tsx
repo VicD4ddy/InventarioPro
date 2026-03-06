@@ -16,11 +16,11 @@ interface CartItem extends Product {
 }
 
 const MOCK_PRODUCTS: Product[] = [
-    { id: "d1", name: "Nike Air Max 270", subtitle: "Zapatillas Urbanas", sku: "NIKE-270-B", price: 150, cost: 80, stock: 12, max_stock: 50, reorder_point: 5, image_url: "👟", user_id: "", category_id: "", supplier_id: "", is_active: true, created_at: "", updated_at: "" },
-    { id: "d2", name: "MacBook Pro M3", subtitle: "Laptop de Alto Rendimiento", sku: "MAC-PRO-G", price: 1999, cost: 1400, stock: 5, max_stock: 20, reorder_point: 2, image_url: "💻", user_id: "", category_id: "", supplier_id: "", is_active: true, created_at: "", updated_at: "" },
-    { id: "d3", name: "Café Espresso Premium", subtitle: "Grano Arábica Seleccionado", sku: "COFFEE-01", price: 4.50, cost: 1.20, stock: 100, max_stock: 500, reorder_point: 50, image_url: "☕", user_id: "", category_id: "", supplier_id: "", is_active: true, created_at: "", updated_at: "" },
-    { id: "d4", name: "iPhone 15 Pro", subtitle: "Titanio Natural", sku: "IPHONE-15-P", price: 999, cost: 600, stock: 8, max_stock: 30, reorder_point: 5, image_url: "📱", user_id: "", category_id: "", supplier_id: "", is_active: true, created_at: "", updated_at: "" },
-    { id: "d5", name: "Sudadera Minimalist", subtitle: "Algodón Orgánico", sku: "HOOD-MIN-G", price: 45, cost: 15, stock: 25, max_stock: 100, reorder_point: 10, image_url: "🧥", user_id: "", category_id: "", supplier_id: "", is_active: true, created_at: "", updated_at: "" },
+    { id: "d1", name: "Nike Air Max 270", subtitle: "Zapatillas Urbanas", sku: "NIKE-270-B", price: 150, wholesale_price: 0, cost: 80, stock: 12, max_stock: 50, reorder_point: 5, image_url: "👟", user_id: "", category_id: "", supplier_id: "", is_active: true, created_at: "", updated_at: "" },
+    { id: "d2", name: "MacBook Pro M3", subtitle: "Laptop de Alto Rendimiento", sku: "MAC-PRO-G", price: 1999, wholesale_price: 0, cost: 1400, stock: 5, max_stock: 20, reorder_point: 2, image_url: "💻", user_id: "", category_id: "", supplier_id: "", is_active: true, created_at: "", updated_at: "" },
+    { id: "d3", name: "Café Espresso Premium", subtitle: "Grano Arábica Seleccionado", sku: "COFFEE-01", price: 4.50, wholesale_price: 0, cost: 1.20, stock: 100, max_stock: 500, reorder_point: 50, image_url: "☕", user_id: "", category_id: "", supplier_id: "", is_active: true, created_at: "", updated_at: "" },
+    { id: "d4", name: "iPhone 15 Pro", subtitle: "Titanio Natural", sku: "IPHONE-15-P", price: 999, wholesale_price: 0, cost: 600, stock: 8, max_stock: 30, reorder_point: 5, image_url: "📱", user_id: "", category_id: "", supplier_id: "", is_active: true, created_at: "", updated_at: "" },
+    { id: "d5", name: "Sudadera Minimalist", subtitle: "Algodón Orgánico", sku: "HOOD-MIN-G", price: 45, wholesale_price: 0, cost: 15, stock: 25, max_stock: 100, reorder_point: 10, image_url: "🧥", user_id: "", category_id: "", supplier_id: "", is_active: true, created_at: "", updated_at: "" },
 ];
 
 export default function POSSystem({ initialProducts }: POSSystemProps) {
