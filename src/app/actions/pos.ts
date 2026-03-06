@@ -55,10 +55,10 @@ export async function processSale(items: SaleItem[]) {
             if (updateError) throw updateError;
 
             // Registrar Movimiento
-            const movement: Database["public"]["Tables"]["stock_movements"]["Insert"] = {
+            const movement = {
                 user_id: user.id,
                 product_id: item.productId,
-                type: "sale",
+                type: "sale" as const,
                 quantity: -item.quantity,
                 stock_before: currentStock,
                 stock_after: newStock,
@@ -67,7 +67,7 @@ export async function processSale(items: SaleItem[]) {
                 notes: `Venta de ${item.quantity} unidades a $${item.unitPrice}`,
             };
 
-            const { error: moveError } = await supabase
+            const { error: moveError } = await (supabase as any)
                 .from("stock_movements")
                 .insert(movement);
 
