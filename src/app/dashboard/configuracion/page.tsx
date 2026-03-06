@@ -23,8 +23,9 @@ export default async function ConfiguracionPage() {
         fullName: user.fullName || "Usuario",
         companyName: user.companyName || "Empresa",
         email: user.email || "",
-        plan: user.plan || "basic",
-        productCount: productCount || 0
+        plan: user.plan || "free",
+        productCount: productCount || 0,
+        bcvRate: user.bcvRate || 1.0,
     };
 
     return (
