@@ -28,7 +28,7 @@ interface ConfigFormProps {
         free_plan_category_limit?: number;
         system_name?: string;
         support_email?: string;
-        notification_type?: 'info' | 'warning' | 'success';
+        notification_type?: string;
         is_notification_active?: boolean;
     };
 }
